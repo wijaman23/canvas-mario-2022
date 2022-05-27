@@ -15,29 +15,26 @@ class Enemy {
     this.ax = fromSky ? 0 : -0.2;
 
     new Audio("./audio/fireball.wav").play();
+
+    // TODO: init enemy. set x,y randomly top or right.
+    // TODO: play fireball audio
   }
 
   draw() {
-    this.ctx.beginPath();
-    this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    this.ctx.fill();
-    this.ctx.closePath();
+    // TODO: draw circle
   }
 
   move() {
-    this.vx += this.ax;
-    this.vy += this.ay;
-    this.x += this.vx;
-    this.y += this.vy;
+    // TODO: move, add a to v and v to position
   }
 
   isVisible() {
-    return this.y + this.r < this.ctx.canvas.height && this.x + this.r > 0;
+    // TODO: return if enemy is inside the canvas based on x and y
   }
 
   collides(p) {
-    const colX = this.x - this.r < p.x + p.w && this.x + this.r > p.x;
-    const colY = this.y + this.r > p.y && this.y - this.r < p.y + p.h;
+    const colX = false; // TODO: check X collision between this and p
+    const colY = false; // TODO: check Y collision between this and p
 
     return colX && colY;
   }

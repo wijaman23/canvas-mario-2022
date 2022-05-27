@@ -15,91 +15,45 @@ class Game {
   }
 
   start() {
-    this.audio.play();
-
-    this.interval = setInterval(() => {
-      this.clear();
-      this.draw();
-      this.move();
-      this.checkCollisions();
-
-      this.tick++;
-
-      if (this.tick > Math.random() * 300 + 100) {
-        this.tick = 0;
-        this.addEnemy();
-      }
-    }, 1000 / 60);
+    // TODO: play audio
+    // TODO: init game loop: clear, draw, move, check collisions and randomly add enemy based on ticks
   }
 
   stop() {
-    this.audio.pause();
-
-    clearInterval(this.interval);
-    this.interval = null;
+    // TODO: pause audio, stop interval, set interval to null
   }
 
   clear() {
-    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-
-    this.enemies = this.enemies.filter((e) => e.isVisible());
+    // TODO: clear entire canvas
+    // TODO: clear not visible enemies (tip: filter)
   }
 
   draw() {
-    this.background.draw();
-    this.player.draw();
-    this.enemies.forEach((e) => e.draw());
+    // TODO: draw everything
   }
 
   move() {
-    this.background.move();
-    this.player.move();
-    this.enemies.forEach((e) => e.move());
+    // TODO: move everything
   }
 
   addEnemy() {
-    const enemy = new Enemy(this.ctx);
-
-    this.enemies.push(enemy);
+    // TODO: create new enemy and add it to this.enemies
   }
 
   checkCollisions() {
-    this.enemies = this.enemies.filter((enemy) => {
-      if (enemy.collides(this.player)) {
-        this.player.hit();
-        return false;
-      }
-
-      return true;
-    });
-
-    if (!this.player.isAlive()) {
-      this.gameOver();
-    }
+    // TODO: check if any enemy "collides" with player
+    // TODO: check if game over
   }
 
   gameOver() {
-    this.gameOverAudio.play();
-    this.stop();
-
-    this.ctx.font = "60px Roboto";
-    this.ctx.fillText(
-      "GAME OVER",
-      this.ctx.canvas.width * 0.3,
-      this.ctx.canvas.height / 2
-    );
-
-    this.player = new Player(ctx);
-    this.enemies = [];
+    // TODO: play game over audio
+    // TODO: stop game
+    // TODO: write "game over"
+    // TODO: restart player and enemies
   }
 
   setListeners() {
-    document.addEventListener("keydown", (event) => {
-      this.player.keyDown(event.keyCode);
-    });
-
-    document.addEventListener("keyup", (event) => {
-      this.player.keyUp(event.keyCode);
-    });
+    // TODO: proxy "keydown" key to player keyDown method
+    // TODO: proxy "keyup" key to player keyUp method
   }
 }
