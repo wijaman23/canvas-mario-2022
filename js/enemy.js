@@ -9,8 +9,8 @@ class Enemy {
       : this.ctx.canvas.width;
     this.y = fromSky ? 0 : this.ctx.canvas.height * 0.85;
     this.r = 20;
-    this.vx = 0;
-    this.vy = 0;
+    this.vx = 40;
+    this.vy = 40;
     this.ay = fromSky ? 0.2 : 0;
     this.ax = fromSky ? 0 : -0.2;
 
@@ -22,10 +22,16 @@ class Enemy {
 
   draw() {
     // TODO: draw circle
+    this.ctx.beginPath()
+    this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
+    this.ctx.fill()
+    this.ctx.closePath()
   }
 
   move() {
     // TODO: move, add a to v and v to position
+    this.y += this.ay * this.vy
+    this.x += this.ax * this.vx
   }
 
   isVisible() {
